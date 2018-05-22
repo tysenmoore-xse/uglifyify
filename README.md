@@ -1,3 +1,12 @@
+# Changed to this fork:
+
+- Modifications so the "warn" and "ignore" do not break anything
+- Added "showIgnored" and "showUglified" options to make debugging a little easier
+
+
+----
+----
+
 # uglifyify
 
 A [Browserify](http://browserify.org) v2 transform which minifies your code

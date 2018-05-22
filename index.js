@@ -13,8 +13,18 @@ function uglifyify(file, opts) {
   var debug = opts._flags && opts._flags.debug
 
   if (ignore(file, opts.ignore)) {
+    if (opts.showIgnored) {
+      console.log("IGN", file)
+    }
     return through()
   }
+
+  if (opts.showUglified) {
+    console.log("uglify: ", file)
+  }
+
+  delete opts.showUglified;
+  delete opts.showIgnored;
 
   var buffer = ''
   var exts = []
@@ -64,6 +74,10 @@ function uglifyify(file, opts) {
     if (debug) {
       opts.sourceMap.content = 'inline'
     }
+
+    delete opts.ignore;
+    opts.warnings = opts.warn || false;
+    delete opts.warn;
 
     var min = ujs.minify(buffer, opts)
     // we should catcch the min error if it comes back and end the stream
