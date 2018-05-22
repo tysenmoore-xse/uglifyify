@@ -23,9 +23,6 @@ function uglifyify(file, opts) {
     console.log("uglify: ", file)
   }
 
-  delete opts.showUglified;
-  delete opts.showIgnored;
-
   var buffer = ''
   var exts = []
     .concat(opts.exts || [])
@@ -78,6 +75,8 @@ function uglifyify(file, opts) {
     delete opts.ignore;
     opts.warnings = opts.warn || false;
     delete opts.warn;
+    delete opts.showUglified;
+    delete opts.showIgnored;
 
     var min = ujs.minify(buffer, opts)
     // we should catcch the min error if it comes back and end the stream
